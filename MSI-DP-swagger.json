@@ -1,0 +1,150 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Azure Managed Service Identity",
+    "version": "1.0.0",
+    "title": "Azure Managed Service Identity"
+  },
+  "host": "control-centraluseuap.identity.azure.net",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderName}/{resourceTypeName}/{resourceName}/credentials?tid={tenantId}&oid={objectId}&aid={clientId}": {
+      "get": {
+        "summary": "Gets the credential for specified resource",
+        "description": "Gets the credential for specified resource",
+        "operationId": "getCredential",
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "subscriptionId",
+            "required": true,
+            "type": "string",
+            "format": "GUID"
+          },
+          {
+            "name": "resourceGroupName",
+            "in": "path",
+            "description": "resourceGroupName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resourceProviderName",
+            "in": "path",
+            "description": "resourceProviderName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resourceTypeName",
+            "in": "path",
+            "description": "resourceTypeName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resourceName",
+            "in": "path",
+            "description": "resourceName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "tenantId",
+            "required": true,
+            "type": "string",
+            "format": "GUID"
+          },
+          {
+            "name": "objectId",
+            "in": "path",
+            "description": "objectId",
+            "required": true,
+            "type": "string",
+            "format": "GUID"
+          },
+          {
+            "name": "clientId",
+            "in": "path",
+            "description": "clientId",
+            "required": true,
+            "type": "string",
+            "format": "GUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Credential"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Credential": {
+      "type": "object",
+      "required": [
+        "client_id",
+        "client_secret",
+        "client_secret_url",
+        "not_before",
+        "not_after",
+        "renew_after",
+        "cannot_renew_after"
+      ],
+      "properties": {
+        "client_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "client_secret": {
+          "type": "string"
+        },
+        "client_secret_url": {
+          "type": "string"
+        },
+        "not_before": {
+          "type": "string"
+        },
+        "not_after": {
+          "type": "string"
+        },
+        "renew_after": {
+          "type": "string"
+        },
+        "cannot_renew_after": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
