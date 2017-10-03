@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "title": "Azure Managed Service Identity"
   },
-  "host": "control-centraluseuap.identity.azure.net",
+  "host": "control-westus.identity.azure.net",
   "schemes": [
     "https"
   ],
